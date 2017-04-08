@@ -19,6 +19,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.datatransfer.StringSelection;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -30,7 +31,7 @@ import java.security.SecureRandom;
  * Randomness based on "java.security.SecureRandom"
  *
  * @author Georg Schmidt <gs-develop@gs-sys.de>
- * @version 1.2 on 07.04.2017
+ * @version 1.3 on 07.04.2017
  */
 
 public class PasswordGen extends JFrame {
@@ -40,7 +41,7 @@ public class PasswordGen extends JFrame {
                     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                     '!', '"', '$', '%', '&', '/', '(', ')', '=', '?', '\\', '}', ']', '[', '{', '+', '*', '#', '-', '_', '.', ':', ',', ';', '@'};
     
-    private final String version = "1.2";
+    private final String version = "1.3";
 
     private int defaultLengthPassword = 15;
     private String iniFileName = "passwordgen.ini";
@@ -130,5 +131,6 @@ public class PasswordGen extends JFrame {
         }
 
         tf_pw.setText(new String(newPW));
+	Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(tf_pw.getText()), null);
     } 
 }
