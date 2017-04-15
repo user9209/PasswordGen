@@ -31,7 +31,7 @@ import java.security.SecureRandom;
  * Randomness based on "java.security.SecureRandom"
  *
  * @author Georg Schmidt <gs-develop@gs-sys.de>
- * @version 1.3 on 07.04.2017
+ * @version 1.4 on 07.04.2017
  */
 
 public class PasswordGen extends JFrame {
@@ -40,8 +40,8 @@ public class PasswordGen extends JFrame {
                     'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M',
                     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
                     '!', '"', '$', '%', '&', '/', '(', ')', '=', '?', '\\', '}', ']', '[', '{', '+', '*', '#', '-', '_', '.', ':', ',', ';', '@'};
-    
-    private final String version = "1.3";
+
+    private final String version = "1.4";
 
     private int defaultLengthPassword = 15;
     private String iniFileName = "passwordgen.ini";
@@ -89,8 +89,7 @@ public class PasswordGen extends JFrame {
         cp.add(l_version);
 
 
-
-	// Load password length from file
+        // Load password length from file
         if (new File(iniFileName).exists()) {
             try {
                 defaultLengthPassword = Integer.parseInt(new String(Files.readAllBytes(Paths.get(iniFileName))));
@@ -100,6 +99,9 @@ public class PasswordGen extends JFrame {
 
         // set password length
         js_length.setValue(defaultLengthPassword);
+
+        // generate new password at creation time
+        b_generate_ActionPerformed(null);
 
         setVisible(true);
     }
@@ -111,7 +113,7 @@ public class PasswordGen extends JFrame {
     private void b_generate_ActionPerformed(ActionEvent evt) {
         int size = (Integer) js_length.getValue();
 
-	// save password length to file if it has been changed
+        // save password length to file if it has been changed
         if(size != defaultLengthPassword)
         {
             defaultLengthPassword = size;
@@ -124,13 +126,13 @@ public class PasswordGen extends JFrame {
             } catch (Exception e) {}
         }
 
-	// Generate password
+        // Generate password
         char[] newPW = new char[size];
         for (int i = 0; i < size; i++) {
             newPW[i] = alph[rand.nextInt(alph.length)];
         }
 
         tf_pw.setText(new String(newPW));
-	Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(tf_pw.getText()), null);
-    } 
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(tf_pw.getText()), null);
+    }
 }
