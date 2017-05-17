@@ -31,17 +31,17 @@ import java.security.SecureRandom;
  * Randomness based on "java.security.SecureRandom"
  *
  * @author Georg Schmidt <gs-develop@gs-sys.de>
- * @version 1.4 on 07.04.2017
+ * @version 1.5 on 17.05.2017
  */
 
 public class PasswordGen extends JFrame {
     private final char[] alph = new char[]
-            {'q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'y', 'x', 'c', 'v', 'b', 'n', 'm',
-                    'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'I', 'O', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M',
-                    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+            {'q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'y', 'x', 'c', 'v', 'b', 'n', 'm',
+                    'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M',
+                    '1', '2', '3', '4', '5', '6', '7', '8', '9',
                     '!', '"', '$', '%', '&', '/', '(', ')', '=', '?', '\\', '}', ']', '[', '{', '+', '*', '#', '-', '_', '.', ':', ',', ';', '@'};
 
-    private final String version = "1.4";
+    private final String version = "1.5";
 
     private int defaultLengthPassword = 15;
     private String iniFileName = "passwordgen.ini";
