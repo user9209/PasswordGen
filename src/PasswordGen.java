@@ -41,23 +41,24 @@ public class PasswordGen extends JFrame {
                     '1', '2', '3', '4', '5', '6', '7', '8', '9',
                     '!', '"', '$', '%', '&', '/', '(', ')', '=', '?', '\\', '}', ']', '[', '{', '+', '*', '#', '-', '_', '.', ':', ',', ';', '@'};
 
-    private final String version = "1.5";
+    private final String version = "1.6";
 
     private int defaultLengthPassword = 15;
     private String iniFileName = "passwordgen.ini";
+    private SecureRandom rand = new SecureRandom();
 
+    // GUI elements
     private JTextField tf_pw = new JTextField();
     private JButton b_generate = new JButton();
     private JLabel l_version = new JLabel();
-    private SecureRandom rand = new SecureRandom();
     private JSpinner js_length = new JSpinner();
     private SpinnerNumberModel js_lengthModel = new SpinnerNumberModel(12, 1, 64, 1);
 
     public PasswordGen() {
         super();
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        int frameWidth = 290;
-        int frameHeight = 140;
+        int frameWidth = 292;
+        int frameHeight = 136;
         setSize(frameWidth, frameHeight);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (d.width - getSize().width) / 2;
@@ -89,11 +90,13 @@ public class PasswordGen extends JFrame {
         cp.add(l_version);
 
 
+        js_length.addChangeListener((ignore) -> b_generate_ActionPerformed(null));
+
         // Load password length from file
         if (new File(iniFileName).exists()) {
             try {
                 defaultLengthPassword = Integer.parseInt(new String(Files.readAllBytes(Paths.get(iniFileName))));
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
         }
 
@@ -102,6 +105,8 @@ public class PasswordGen extends JFrame {
 
         // generate new password at creation time
         b_generate_ActionPerformed(null);
+
+        this.getRootPane().setDefaultButton(b_generate);
 
         setVisible(true);
     }
@@ -123,7 +128,7 @@ public class PasswordGen extends JFrame {
                     Integer.toString(defaultLengthPassword).getBytes(),
                     StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE
                 );
-            } catch (Exception e) {}
+            } catch (Exception ignored) {}
         }
 
         // Generate password

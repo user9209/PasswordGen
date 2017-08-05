@@ -1,1 +1,8 @@
-releases/
+**/releases/
+passwordgen.ini
+
+# idea
+**/out/
+**/.idea/*
+!**/.idea/artifacts/
+!**/.idea/libraries/
