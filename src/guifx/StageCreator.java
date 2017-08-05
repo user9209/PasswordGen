@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-package javafx;
+package guifx;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

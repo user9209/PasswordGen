@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: javafx.Main
-JavaFX-Fallback-Class: PasswordGen
+Created-By: GS
+Main-Class: guifx.FXstarter
+JavaFX-Fallback-Class: gui.PasswordGen
