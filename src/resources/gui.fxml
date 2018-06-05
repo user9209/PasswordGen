@@ -52,7 +52,7 @@
                   </Button>
                   <Label fx:id="passwordQuality" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="QUALITY" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="15.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </Label>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" />
