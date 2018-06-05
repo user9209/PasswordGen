@@ -39,9 +39,9 @@ public class PasswordGen extends JFrame {
             {'q', 'w', 'e', 'r', 't', 'z', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'y', 'x', 'c', 'v', 'b', 'n', 'm',
                     'Q', 'W', 'E', 'R', 'T', 'Z', 'U', 'P', 'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'Y', 'X', 'C', 'V', 'B', 'N', 'M',
                     '1', '2', '3', '4', '5', '6', '7', '8', '9',
-                    '!', '"', '$', '%', '&', '/', '(', ')', '=', '?', '\\', '}', ']', '[', '{', '+', '*', '#', '-', '_', '.', ':', ',', ';', '@'};
+                    '!', '$', '%', '&', '/', '(', ')', '=', '?', '+', '*', '-', '_', '.', ':', '@'};
 
-    private final String version = "1.6";
+    private final String version = "1.7";
 
     private int defaultLengthPassword = 15;
     private String iniFileName = "passwordgen.ini";
