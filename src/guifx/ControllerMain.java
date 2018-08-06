@@ -293,8 +293,7 @@ public class ControllerMain implements Initializable {
     private boolean findIni() {
 
         for(String x : dirList) {
-
-            System.out.println(Paths.get(x + iniFileName).toAbsolutePath()  + " " + Files.exists(Paths.get(x + iniFileName)));
+            // System.out.println(Paths.get(x + iniFileName).toAbsolutePath()  + " " + Files.exists(Paths.get(x + iniFileName)));
             if(Files.exists(Paths.get(x + iniFileName)))
             {
                 iniDir =  x;
