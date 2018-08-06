@@ -45,7 +45,7 @@ public class ControllerMain implements Initializable {
 
     private final String versionString = "V 1.8 fx";
     // Todo: no possibility to save ini file non-portable
-    private final String[] dirList = new String[]{"~/", "%appdata%\\", "./"};
+    private final String[] dirList = new String[]{System.getProperty("user.home") + "/", System.getenv("APPDATA") + "/", "./"};
 
     private int defaultLengthPassword = 15;
     private ALPHABET currentAlphabet = ALPHABET.AZaz09;
@@ -293,6 +293,8 @@ public class ControllerMain implements Initializable {
     private boolean findIni() {
 
         for(String x : dirList) {
+
+            System.out.println(Paths.get(x + iniFileName).toAbsolutePath()  + " " + Files.exists(Paths.get(x + iniFileName)));
             if(Files.exists(Paths.get(x + iniFileName)))
             {
                 iniDir =  x;
@@ -305,7 +307,7 @@ public class ControllerMain implements Initializable {
     private String[] loadIni() {
         String[] config = new String[0];
         try {
-            config = new String(Files.readAllBytes(Paths.get(iniFileName)), StandardCharsets.UTF_8).split("\\|");
+            config = new String(Files.readAllBytes(Paths.get(iniDir + iniFileName)), StandardCharsets.UTF_8).split("\\|");
 
             defaultLengthPassword = Integer.parseInt(config[0]);
         }
