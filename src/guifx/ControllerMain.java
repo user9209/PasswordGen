@@ -17,7 +17,6 @@
 
 package guifx;
 
-
 import de.gs_sys.lib.crypto.passwords.PasswordStrength;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -30,7 +29,6 @@ import javafx.stage.Stage;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
-import java.io.File;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -45,11 +43,14 @@ public class ControllerMain implements Initializable {
 
     enum ALPHABET {AZaz09S, AZaz09, AZaz, AZ09, az09, a09}
 
-    private final String versionString = "V 1.7 fx";
+    private final String versionString = "V 1.8 fx";
+    // Todo: no possibility to save ini file non-portable
+    private final String[] dirList = new String[]{"~/", "%appdata%\\", "./"};
 
     private int defaultLengthPassword = 15;
     private ALPHABET currentAlphabet = ALPHABET.AZaz09;
     private String iniFileName = "passwordgen.ini";
+    private String iniDir = "";
 
     private SecureRandom rand = new SecureRandom();
     private static ControllerMain instance;
@@ -91,15 +92,7 @@ public class ControllerMain implements Initializable {
         if(size != defaultLengthPassword || currentAlphabet != ALPHABET.AZaz09S)
         {
             defaultLengthPassword = size;
-            try {
-                Files.write(
-                        Paths.get(iniFileName),
-                        (Integer.toString(defaultLengthPassword)
-                         + "|" + choicebox_charset.getSelectionModel().getSelectedIndex()
-                        ).getBytes(),
-                        StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE
-                );
-            } catch (Exception ignored) {}
+            writeDataToIni(defaultLengthPassword, choicebox_charset.getSelectionModel().getSelectedIndex());
         }
 
         // Generate password
@@ -130,14 +123,8 @@ public class ControllerMain implements Initializable {
         String[] config = new String[0];
 
         // Load password length from file
-        if (new File(iniFileName).exists()) {
-            try {
-                config = new String(Files.readAllBytes(Paths.get(iniFileName)), StandardCharsets.UTF_8).split("\\|");
-
-                defaultLengthPassword = Integer.parseInt(config[0]);
-            }
-            catch (Exception ignored) {
-            }
+        if (findIni()) {
+            config = loadIni();
         }
 
         b_version.setText(versionString );
@@ -222,7 +209,6 @@ public class ControllerMain implements Initializable {
 
 
     /* Multi-Alphabets */
-
     private char[] alpha;
     private int alphaLength;
 
@@ -304,4 +290,37 @@ public class ControllerMain implements Initializable {
         }
     }
 
+    private boolean findIni() {
+
+        for(String x : dirList) {
+            if(Files.exists(Paths.get(x + iniFileName)))
+            {
+                iniDir =  x;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private String[] loadIni() {
+        String[] config = new String[0];
+        try {
+            config = new String(Files.readAllBytes(Paths.get(iniFileName)), StandardCharsets.UTF_8).split("\\|");
+
+            defaultLengthPassword = Integer.parseInt(config[0]);
+        }
+        catch (Exception ignored) {
+        }
+        return config;
+    }
+
+    public void writeDataToIni(int passwordlength, int alphabet){
+        try {
+            Files.write(
+                    Paths.get(iniDir + iniFileName),
+                    (Integer.toString(passwordlength) + "|" + alphabet).getBytes(),
+                    StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING, StandardOpenOption.WRITE
+            );
+        } catch (Exception ignored) {}
+    }
 }
