@@ -28,3 +28,9 @@ Version 1.2: first published version
 # Warning:
 
 Since version 1.4 the clipboard is overwritten even if you do not click any button!
+
+
+
+## Pre-View
+
+![Screenshot](doc/screenshot.png)
