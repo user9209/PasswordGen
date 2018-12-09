@@ -43,7 +43,7 @@ public class ControllerMain implements Initializable {
 
     enum ALPHABET {AZaz09S, AZaz09, AZaz, AZ09, az09, a09}
 
-    private final String versionString = "V 1.8 fx";
+    private final String versionString = "V 1.9 fx";
     // Todo: no possibility to save ini file non-portable
     private final String[] dirList = new String[]{System.getProperty("user.home") + "/", System.getenv("APPDATA") + "/", "./"};
 

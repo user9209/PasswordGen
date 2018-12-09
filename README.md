@@ -8,6 +8,8 @@ Randomness based on "java.security.SecureRandom"
 
 # History:
 
+Version 1.9: Fix Layout on Linux
+
 Version 1.8: Supports loading Multipath-ini-file (needs to move ini manualy to home dir)
 
 Version 1.7: Checks the complexity of the password by calculation of its bit complexity,

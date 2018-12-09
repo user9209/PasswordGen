@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guifx.ControllerMain">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/8.0.161-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="guifx.ControllerMain">
    <center>
       <VBox prefHeight="108.0" prefWidth="321.0" BorderPane.alignment="CENTER">
          <children>
@@ -28,29 +28,32 @@
                <children>
                   <Spinner fx:id="spinner_length" editable="true" initialValue="15" max="300" maxWidth="-Infinity" min="4" minWidth="-Infinity" prefWidth="60.0">
                      <HBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets bottom="5.0" left="10.0" top="5.0" />
                      </HBox.margin>
                   </Spinner>
                   <ChoiceBox fx:id="choicebox_charset" prefWidth="136.0">
                      <HBox.margin>
-                        <Insets left="20.0" right="20.0" />
+                        <Insets left="12.0" right="12.0" />
                      </HBox.margin>
                   </ChoiceBox>
                   <Button fx:id="button_generate" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onGenerate" text="Generate">
                      <HBox.margin>
-                        <Insets bottom="5.0" top="5.0" />
+                        <Insets bottom="5.0" right="10.0" top="5.0" />
                      </HBox.margin>
                   </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="b_version" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonVersion" prefWidth="60.0" text="V xx fx">
+                  <Button fx:id="b_version" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onButtonVersion" prefWidth="80.0" text="V xx fx">
                      <HBox.margin>
-                        <Insets left="15.0" />
+                        <Insets left="10.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="12.0" />
+                     </font>
                   </Button>
-                  <Label fx:id="passwordQuality" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" text="QUALITY" textAlignment="CENTER">
+                  <Label fx:id="passwordQuality" alignment="CENTER" contentDisplay="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0" text="QUALITY" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
