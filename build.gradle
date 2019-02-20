@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+}
+
+// gradlew.bat build test
+
+group 'de.gs_sys'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src'
+        }
+    }
+    test {
+        java {
+            srcDir 'test'
+        }
+    }
+}
+
+test {
+    useJUnit()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'guifx.FXstarter'
+//        attributes 'Main-Class': 'gui.PasswordGen'
+    }
+}
+
