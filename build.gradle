@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-	id 'org.openjfx.javafxplugin'
+	id "org.openjfx.javafxplugin" version "0.0.7"
 }
 
 // gradlew.bat build test
