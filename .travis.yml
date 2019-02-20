@@ -1,4 +1,5 @@
 language: java
+apply from: 'http://dl.bintray.com/content/shemnon/javafx-gradle/javafx.plugin'
 install: true
 jdk:
 #  - oraclejdk8
