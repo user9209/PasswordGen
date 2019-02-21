@@ -6,26 +6,31 @@ import static org.junit.Assert.*;
 
 public class PasswordStrengthTest {
 
+	@DisplayName("Mix 1")
     @Test
     public void complexity1() {
         Complexity com = PasswordStrength.complexity("a!84");
         assertEquals("Complexity{bit=22, length=4, charsetSize=53}", com.toString());
     }
+	@DisplayName("Mix 2")
     @Test
     public void complexity2() {
         Complexity com = PasswordStrength.complexity("a!8A4");
         assertEquals("Complexity{bit=31, length=5, charsetSize=79}", com.toString());
     }
+	@DisplayName("lower char")
     @Test
     public void complexity3() {
         Complexity com = PasswordStrength.complexity("aaaa");
         assertEquals("Complexity{bit=18, length=4, charsetSize=26}", com.toString());
     }
+	@DisplayName("upper char")
     @Test
     public void complexity4() {
         Complexity com = PasswordStrength.complexity("AAAA");
         assertEquals("Complexity{bit=18, length=4, charsetSize=26}", com.toString());
     }
+	@DisplayName("numbers")
     @Test
     public void complexity5() {
         Complexity com = PasswordStrength.complexity("0359");
