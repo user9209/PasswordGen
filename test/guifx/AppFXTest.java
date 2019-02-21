@@ -25,7 +25,7 @@ import static org.junit.Assert.*;
 
 public class AppFXTest extends ApplicationTest {
     AppFX appFX;
-    NodeQuery root;
+
 
     @Rule
     public TestName name = new TestName();
@@ -39,55 +39,62 @@ public class AppFXTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
+        AppFX.loadConfig = false;
         appFX = new AppFX();
         appFX.start(null);
 
         stage = appFX.getRoot();
-
-        root = from(appFX.getRoot().getScene().getRoot());
         stage.show();
+
+        Thread.sleep(2);
     }
 
     public NodeQuery getNodeQuery() {
         return from(appFX.getRoot().getScene().getRoot());
     }
 
-    /*
+/*
     @Test
     public void testChangeCharsetMouse() {
-        ChoiceBox<String> c = root.lookup("#choicebox_charset").queryAs(ChoiceBox.class);
+        ChoiceBox<String> c = getNodeQuery().lookup("#choicebox_charset").queryAs(ChoiceBox.class);
 
         c.getSelectionModel().select(4);
-        clickOn(c);
-        press(KeyCode.UP);
-        press(KeyCode.ENTER);
 
-        String password1 = root.lookup("#password_field").queryAs(TextField.class).getText();
+        String password1 = getNodeQuery().lookup("#password_field").queryAs(TextField.class).getText();
+
+        System.out.println(password1);
 
         assertTrue(password1.matches("[a-z0-9]+"));
     }
-
+*/
     @Test
     public void testChangeCharset() {
-        ChoiceBox c = root.lookup("#choicebox_charset").queryAs(ChoiceBox.class);
-        c.getSelectionModel().select(0);
+        ChoiceBox c = getNodeQuery().lookup("#choicebox_charset").queryAs(ChoiceBox.class);
+
+//        c.getSelectionModel().select(5);
 
         clickOn(c);
         press(KeyCode.UP);
         press(KeyCode.ENTER);
 
+        // clickOn(getNodeQuery().lookup("#button_generate").queryAs(Button.class));
 
-        String password1 = root.lookup("#password_field").queryAs(TextField.class).getText();
+        String password1 = getNodeQuery().lookup("#password_field").queryAs(TextField.class).getText();
 
+        System.out.println(password1);
 
-        assertTrue(password1.matches("[0-9]+"));
-        assertEquals("[0-9]", c.getSelectionModel().getSelectedItem());
+        assertTrue(password1.matches("[a-z0-9]+"));
+        assertEquals("[a-z0-9]", c.getSelectionModel().getSelectedItem());
+
+        clickOn(c);
+        press(KeyCode.DOWN);
+        press(KeyCode.ENTER);
     }
-*/
+
     @Test
     public void testPasswordsDiffer() {
 
-        String password1 = root.lookup("#password_field").queryAs(TextField.class).getText();
+        String password1 = getNodeQuery().lookup("#password_field").queryAs(TextField.class).getText();
         // clickOn(root.lookup("#button_generate").queryAs(Button.class));
 
         //moveTo(getNodeQuery().lookup("#button_generate").queryAs(Button.class));
@@ -105,7 +112,7 @@ public class AppFXTest extends ApplicationTest {
         sleep(2, SECONDS);
 
 
-        String password2 = from(appFX.getRoot().getScene().getRoot()).lookup("#password_field").queryAs(TextField.class).getText();
+        String password2 = getNodeQuery().lookup("#password_field").queryAs(TextField.class).getText();
 
         System.out.println(name.getMethodName() + ": assertions 1\nPasswords not equal:");
         System.out.println(password1);
@@ -118,7 +125,7 @@ public class AppFXTest extends ApplicationTest {
         getNodeQuery().lookup("#button_generate").queryAs(Button.class).fire();
         sleep(2, SECONDS);
 
-        String password3 = from(appFX.getRoot().getScene().getRoot()).lookup("#password_field").queryAs(TextField.class).getText();
+        String password3 = getNodeQuery().lookup("#password_field").queryAs(TextField.class).getText();
 
         System.out.println(name.getMethodName() + ": assertions 2");
         assertNotEquals(password1,password3);
