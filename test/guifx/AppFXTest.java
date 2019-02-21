@@ -39,7 +39,7 @@ public class AppFXTest extends ApplicationTest {
 
     @Override
     public void start(Stage stage) throws Exception {
-        AppFX.loadConfig = false;
+        AppFX.underTest = true;
         appFX = new AppFX();
         appFX.start(null);
 
@@ -70,6 +70,8 @@ public class AppFXTest extends ApplicationTest {
     @Test
     public void testChangeCharset() {
         ChoiceBox c = getNodeQuery().lookup("#choicebox_charset").queryAs(ChoiceBox.class);
+
+        assertEquals(4,c.getSelectionModel().getSelectedIndex());
 
 //        c.getSelectionModel().select(5);
 
@@ -122,7 +124,8 @@ public class AppFXTest extends ApplicationTest {
 
 
         // like clickOn bit direct fire
-        getNodeQuery().lookup("#button_generate").queryAs(Button.class).fire();
+        //getNodeQuery().lookup("#button_generate").queryAs(Button.class).fire();
+        clickOn(getNodeQuery().lookup("#button_generate").queryAs(Button.class));
         sleep(2, SECONDS);
 
         String password3 = getNodeQuery().lookup("#password_field").queryAs(TextField.class).getText();
