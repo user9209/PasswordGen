@@ -38,6 +38,8 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import static guifx.AppFX.underTest;
+
 
 public class ControllerMain implements Initializable {
 
@@ -123,7 +125,7 @@ public class ControllerMain implements Initializable {
         String[] config = new String[0];
 
         // Load password length from file
-        if (findIni()) {
+        if (!underTest && findIni()) {
             config = loadIni();
         }
 
@@ -155,8 +157,10 @@ public class ControllerMain implements Initializable {
         // generate new password at creation time
         onGenerate();
 
-        // Default in button
-        Platform.runLater(() -> button_generate.requestFocus());
+        if(!underTest) {
+            // Default in button
+            Platform.runLater(() -> button_generate.requestFocus());
+        }
     }
 
     /**

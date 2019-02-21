@@ -23,6 +23,10 @@ import javafx.stage.WindowEvent;
 
 public class AppFX extends Application {
 
+    public static boolean underTest = false;
+
+    Stage root = null;
+
     public static void main(String[] args) {
         launch(args);   
     }
@@ -33,6 +37,7 @@ public class AppFX extends Application {
 
         /* create and setup main stage */
         Stage mainStage = StageCreator.getStageFromFXML("Password Gen","gui.fxml");
+        root = mainStage;
 
         /* Load hotkeys */
         ControllerMain.loadHotkeys(mainStage);
@@ -47,5 +52,9 @@ public class AppFX extends Application {
 
         // No resize
         mainStage.setResizable(false);
+    }
+
+    public Stage getRoot() {
+        return root;
     }
 }
